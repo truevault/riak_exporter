@@ -17,11 +17,11 @@ import (
 var (
 	listenAddress = flag.String(
 		"web.listen-address", ":9104",
-		"Address on which to expose metrics and web interface.",
+		"Address to listen on for web interface and telemetry.",
 	)
 	metricsPath = flag.String(
 		"web.telemetry-path", "/metrics",
-		"Path under which to expose Prometheus metrics.",
+		"Path under which to expose metrics.",
 	)
 	riakURI = flag.String(
 		"riak.uri", "http://localhost:8098",
