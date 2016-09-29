@@ -2,3 +2,6 @@ repository:
       path: github.com/wooga/riak_exporter
       build:
             flags: -a -tags netgo
+tarball:
+  files:
+    - LICENSE
