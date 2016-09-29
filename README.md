@@ -21,6 +21,6 @@ make
 
 Name                                       | Description
 -------------------------------------------|--------------------------------------------------------------------------------------------------
-web.listen-address                         | Address to listen on for web interface and telemetry.
-web.telemetry-path                         | Path under which to expose metrics.
-riak.uri                                   | The URI which the Riak HTTP API listens on.
+web.listen-address                         | Address to listen on for web interface and telemetry. (Default `:9104`)
+web.telemetry-path                         | Path under which to expose metrics. (Default `/metrics`)
+riak.uri                                   | The URI which the Riak HTTP API listens on. (Default `http://localhost:8098`)
