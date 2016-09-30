@@ -6,7 +6,6 @@ import (
 	"flag"
 	"io/ioutil"
 	"net/http"
-	"regexp"
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
@@ -170,19 +169,15 @@ func (e *Exporter) scrape(ch chan<- prometheus.Metric) {
 	m := f.(map[string]interface{})
 
 	for metricName, metricValue := range m {
-		matched, _ := regexp.MatchString("^(memory|node|pbc|vnode|coord|read)_.+", metricName)
+		description := prometheus.NewDesc(
+			prometheus.BuildFQName(namespace, "", metricName),
+			metricName,
+			nil,
+			nil,
+		)
 
-		if matched {
-			description := prometheus.NewDesc(
-				prometheus.BuildFQName(namespace, "performance", metricName),
-				metricName,
-				nil,
-				nil,
-			)
-
-			if value, ok := metricValue.(float64); ok {
-				ch <- prometheus.MustNewConstMetric(description, prometheus.GaugeValue, value)
-			}
+		if value, ok := metricValue.(float64); ok {
+			ch <- prometheus.MustNewConstMetric(description, prometheus.GaugeValue, value)
 		}
 	}
 }
