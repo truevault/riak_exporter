@@ -145,13 +145,14 @@ func (e *Exporter) scrape(ch chan<- prometheus.Metric) {
 		return
 	}
 
+	defer statsResponse.Body.Close()
+
 	if statsResponse.StatusCode != 200 {
 		err = errors.New("Error when fetching the stats for the Riak node")
 		log.Errorln("Error when fetching the stats for the Riak node")
 		return
 	}
 
-	defer statsResponse.Body.Close()
 	data, err := ioutil.ReadAll(statsResponse.Body)
 	if err != nil {
 		log.Errorln("Error reading the response body for the /stats endpoint")
