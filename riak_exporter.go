@@ -129,6 +129,8 @@ func (e *Exporter) scrape(ch chan<- prometheus.Metric) {
 		return
 	}
 
+	defer pingResponse.Body.Close()
+
 	if pingResponse.StatusCode == 200 {
 		e.riakUp.Set(1)
 	} else {
