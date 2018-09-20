@@ -34,9 +34,9 @@ const (
 )
 
 var landingPage = []byte(`<html>
-<head><title>MySQLd exporter</title></head>
+<head><title>Riak exporter</title></head>
 <body>
-<h1>MySQLd exporter</h1>
+<h1>Riak exporter</h1>
 <p><a href='` + *metricsPath + `'>Metrics</a></p>
 </body>
 </html>
